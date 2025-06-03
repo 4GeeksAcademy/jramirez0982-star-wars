@@ -1,18 +1,16 @@
 export const initialStore=()=>{
   return{
     message: null,
-    todos: [
+    results: [
       {
-        id: 1,
-        title: "Make the bed",
-        background: null,
-      },
-      {
-        id: 2,
-        title: "Do my homework",
-        background: null,
+      uid: "",
+      name: "",
+      url: ""
       }
+
     ]
+
+    
   }
 }
 
@@ -26,6 +24,13 @@ export default function storeReducer(store, action = {}) {
         ...store,
         todos: store.todos.map((todo) => (todo.id === id ? { ...todo, background: color } : todo))
       };
+
+    case 'load_characters':
+      return{
+        ...store,
+        results: action.payload
+      }
+
     default:
       throw Error('Unknown action.');
   }    
